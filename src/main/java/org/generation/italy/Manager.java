@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class Manager {
 
@@ -13,6 +14,12 @@ public class Manager {
 	private static final String PASSWORD = "root";
 	 
 	public static void main(String[] args) {
+		exercise();
+		System.out.println("\n-----------------------------------------\n");
+		bonus();
+	}
+	
+	private static void exercise() {
 		try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD)){
 			 final String query = " SELECT countries.name, countries.country_id, regions.name, continents.name FROM countries "
 					 			+ " JOIN regions ON countries.region_id = regions.region_id "
@@ -37,6 +44,18 @@ public class Manager {
 			}
 			con.close();
 		} catch(SQLException SQLerr) {
+			SQLerr.printStackTrace();
+		}
+	}
+	
+	private static void bonus() {
+		Scanner scn = new Scanner(System.in);
+		System.out.println("Inserisci l'id di una nazione per approfondire");
+		int userSearchId = scn.nextInt();
+		
+		try (Connection con = DriverManager.getConnection(URL, USER, PASSWORD)){
+			
+		} catch (SQLException SQLerr) {
 			SQLerr.printStackTrace();
 		}
 	}
